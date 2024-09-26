@@ -87,33 +87,9 @@ body {
 }
 
 .grid__card {
-  @apply grid grid-cols-5 gap-x-4 gap-y-12 mt-7;
+  @apply grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-9;
 }
 
 .main__screen {
   @apply grid grid-cols-[300px,1fr,400px] h-screen;
-}
-
-@media (max-width: 1200px) {
-  .grid__card {
-    @apply grid-cols-4;
-  }
-}
-
-@media (max-width: 992px) {
-  .grid__card {
-    @apply grid-cols-3;
-  }
-}
-
-@media (max-width: 768px) {
-  .grid__card {
-    @apply grid-cols-2;
-  }
-}
-
-@media (max-width: 576px) {
-  .grid__card {
-    @apply grid-cols-1;
-  }
 }

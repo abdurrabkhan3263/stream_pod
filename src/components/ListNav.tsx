@@ -49,7 +49,7 @@ function ListNav() {
                 <p className="text-lg font-medium text-dark">{title}</p>
               </Link>
               {isActive && (
-                <span className="absolute rounded-tl-sm rounded-bl-md h-full w-2 bg-red-500 right-0 top-0"></span>
+                <span className="absolute rounded-tl-sm rounded-bl-md h-full w-1.5 bg-red-500 right-0 top-0"></span>
               )}
             </li>
           );

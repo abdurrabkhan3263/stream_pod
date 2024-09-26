@@ -1,8 +1,15 @@
+"use client";
+
 import Container from "@/components/Container";
 import PodcastCard from "@/components/PodcastCard";
+import { podcastData } from "@/constants";
 import React from "react";
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
-function page() {
+function Home() {
+  const tasks = useQuery(api.tasks.get);
+  console.log(tasks);
   return (
     <Container>
       <div>
@@ -12,10 +19,15 @@ function page() {
           </h1>
           {/* Trending Podcasts cards section */}
           <div className="grid__card">
-            <PodcastCard />
-            <PodcastCard />
-            <PodcastCard />
-            <PodcastCard />
+            {podcastData.map(({ id, title, description, imgURL }) => (
+              <PodcastCard
+                key={id}
+                imgURL={imgURL}
+                title={title}
+                description={description}
+                id={id}
+              />
+            ))}
           </div>
         </section>
       </div>
@@ -23,4 +35,4 @@ function page() {
   );
 }
 
-export default page;
+export default Home;

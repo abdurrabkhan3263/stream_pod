@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 
 function SideBar() {
   return (
-    <div className="flex flex-col justify-between text-white bg-[#15171C] py-8">
+    <div className=" flex-col justify-between text-white bg-[#15171C] py-8 hidden md:flex">
       <nav>
         <Link href={"/"} className="flex items-center pl-8 gap-4">
           <Image src="/icons/logo.svg" alt="logo" width={28} height={28} />
