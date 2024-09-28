@@ -40,6 +40,8 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --text-dark: #ffffffb8;
+    --bg-dark: #15171c;
+    --ring-border: #f97535;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -87,9 +89,19 @@ body {
 }
 
 .grid__card {
-  @apply grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-9;
+  @apply grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 mt-9;
 }
 
 .main__screen {
   @apply grid grid-cols-[300px,1fr,400px] h-screen;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.glassmorphism-auth {
+  background: rgba(6, 3, 3, 0.711);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }

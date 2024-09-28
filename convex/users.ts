@@ -3,8 +3,34 @@ import { internalMutation, query } from "./_generated/server";
 
 export const getTrendingPodcast = query({
   args: {},
-  async handler(ctx, _) {
-    const allPodCast = await ctx.db.query("podcast");
+  async handler(ctx) {
+    const allUsers = await ctx.db.query("users").collect();
+
+    const userData = await Promise.all(
+      allUsers.map(async (user) => {
+        const authorPodcast = await ctx.db
+          .query("podcast")
+          .filter((p) => p.eq(p.field("authorId"), user.clerkId))
+          .collect();
+
+        const sortedPodcast = authorPodcast.sort((a, b) => (b.views = a.views));
+
+        return {
+          ...user,
+          total_podcast: authorPodcast.length,
+          podcast: sortedPodcast.map((value) => ({
+            podcasttitle: value.podcastTitle,
+            podcastId: value._id,
+          })),
+        };
+      })
+    );
+
+    const sortedUsers = userData.sort(
+      (a, b) => b.total_podcast - a.total_podcast
+    );
+
+    return sortedUsers;
   },
 });
 

@@ -9,8 +9,8 @@ function layout({ children }: { children: React.ReactNode }) {
     <main className="flex flex-col">
       <div className="main__screen">
         <SideBar />
-        <section className="min-h-screen">
-          <div className="flex flex-col w-full max-w-5xl max-sm:px-4">
+        <section className="min-h-screen ">
+          <div className="flex flex-col  w-full max-sm:px-4">
             <div className="flex h-16 items-center justify-between md:hidden">
               <Image
                 src={"/icons/logo.svg"}

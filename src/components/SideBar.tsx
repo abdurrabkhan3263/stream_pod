@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ListNav from "./ListNav";
-import { Button } from "./ui/button";
 
 function SideBar() {
   return (
@@ -14,7 +13,6 @@ function SideBar() {
         </Link>
         <ListNav />
       </nav>
-      <Button variant={"secondary"}>Submit</Button>
     </div>
   );
 }

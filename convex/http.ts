@@ -13,9 +13,9 @@ const handleClerkWebhook = httpAction(async (ctx, request) => {
       status: 400,
     });
   }
+  console.log("WebHook Event Called:-->", event);
   switch (event.type) {
     case "user.created":
-      // intentional fallthrough
       await ctx.runMutation(internal.users.createUser, {
         clerkId: event.data.id,
         email: event.data.email_addresses[0].email_address,

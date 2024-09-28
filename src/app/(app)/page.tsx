@@ -4,12 +4,8 @@ import Container from "@/components/Container";
 import PodcastCard from "@/components/PodcastCard";
 import { podcastData } from "@/constants";
 import React from "react";
-import { useQuery } from "convex/react";
-import { api } from "../../../convex/_generated/api";
 
 function Home() {
-  const tasks = useQuery(api.tasks.get);
-  console.log(tasks);
   return (
     <Container>
       <div>
