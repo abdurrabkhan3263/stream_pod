@@ -42,6 +42,8 @@ body {
     --text-dark: #ffffffb8;
     --bg-dark: #15171c;
     --ring-border: #f97535;
+    --sep-color: #2e3036;
+    --active-btn: #222429;
   }
   .dark {
     --background: 0 0% 3.9%;

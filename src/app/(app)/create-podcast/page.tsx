@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { podCastType } from "@/types/zod.podcast";
 import { useForm } from "react-hook-form";
@@ -23,11 +23,33 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
+import Generator from "@/components/Generator";
+import { Button } from "@/components/ui/button";
+import { Id } from "../../../../convex/_generated/dataModel";
 
 const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
 
 function Page() {
-  const [audioType, setAudioType] = React.useState("");
+  // Audio State
+  const [audioUrl, setAudioUrl] = useState("");
+  const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(
+    null
+  );
+  const [audioDuration, setAudioDuration] = useState(0);
+
+  // All Prompts
+  const [voiceType, setVoiceType] = useState("");
+  const [podcastPrompt, setPodcastPrompt] = useState("");
+  const [thumbnailPrompt, setThumbnailPrompt] = useState("");
+
+  // Thumbnail State
+  const [thumbnailUrl, setThumbnailUrl] = useState("");
+  const [thumbnailStroageId, setThumbnailStorageId] =
+    useState<Id<"_storage"> | null>(null);
+
+  const [isSubmiting, setIsSubmiting] = useState(false);
+
   const form = useForm<z.infer<typeof podCastType>>({
     resolver: zodResolver(podCastType),
     defaultValues: {
@@ -43,7 +65,7 @@ function Page() {
     <Container>
       <h1 className="text-white text-2xl font-semibold">Create Podcast</h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pb-8">
           <FormField
             control={form.control}
             name="podCastTitle"
@@ -72,7 +94,7 @@ function Page() {
                 Select AI Voice
               </p>
             </label>
-            <Select onValueChange={(value) => setAudioType(value)}>
+            <Select onValueChange={(value) => setVoiceType(value)}>
               <SelectTrigger className="w-full bg-bgDark text-dark border-none ring-offset-ringBorder">
                 <SelectValue placeholder="Select Voice" className="text-dark" />
               </SelectTrigger>
@@ -87,6 +109,7 @@ function Page() {
           </div>
 
           {/* Description */}
+
           <FormField
             control={form.control}
             name="podcastDescription"
@@ -98,6 +121,7 @@ function Page() {
                 <FormControl>
                   <Textarea
                     className="bg-bgDark border-none ring-offset-ringBorder text-white"
+                    placeholder="Write a short description about the podcast"
                     {...field}
                   />
                 </FormControl>
@@ -105,6 +129,26 @@ function Page() {
               </FormItem>
             )}
           />
+
+          <Separator className="bg-darkBrown h-0.5" />
+
+          {/* Generator Podcast Component */}
+          <Generator
+            voiceType={voiceType}
+            audio={audioUrl}
+            thumbnail={thumbnailUrl}
+            podCastPrompt={podcastPrompt}
+            thumbnailPrompt={thumbnailPrompt}
+            setAudioUrl={setAudioUrl}
+            setThumbnailPrompt={setThumbnailPrompt}
+            setPodCastPrompt={setPodcastPrompt}
+            setAudioStorageId={setAudioStorageId}
+            setThumbnailUrl={setThumbnailUrl}
+            setAudioDuration={setAudioDuration}
+            setThumbnailStorageId={setThumbnailStorageId}
+          />
+
+          <Button variant={"uploadPodcast"}>Submit & publish podcast</Button>
         </form>
       </Form>
     </Container>

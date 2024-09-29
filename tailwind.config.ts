@@ -14,6 +14,8 @@ const config: Config = {
         ringBorder: "var(--ring-border)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        darkBrown: "var(--sep-color)",
+        activeBtn: "var(--active-btn)",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
